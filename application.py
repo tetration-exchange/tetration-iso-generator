@@ -108,7 +108,6 @@ def create_iso(form):
     subprocess.call(['mkisofs', '-r', '-o', iso_file, iso_folder])
 
     return iso_file
-    # shutil.rmtree(dirpath)
 
 
 if __name__ == "__main__":
