@@ -1,0 +1,105 @@
+<title>Tetration Appliance ISO Generator</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+
+<form class="ui form" action="" method="post" enctype="multipart/form-data">
+    <div style="max-width: 1000px; margin: 15px" class="ui segment">
+        <h2 class="ui right floated header">Tetration Appliance ISO Generator</h2>
+        <div class="ui clearing divider"></div>
+
+        <br />
+        <p>
+            Use this tool to generate an ISO file to be mounted inside the relevant Tetration Appliance (ERSPAN,
+            NetFlow,
+            etc.)
+            OVA. <a href="mailto:tigarner@cisco.com">Request Support.</a>
+        </p>
+        <br />
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message[1] }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        {{ form.csrf }}
+        {{ form.hidden_tag() }}
+
+        <div class="inline fields">
+            <div class="required fluid field">
+                {{ form.rpm.label }} {{ form.rpm }}
+            </div>
+        </div>
+
+        <br />
+
+        <div class="two fields">
+            <div class="required field"> {{ form.ip1.label }} {{ form.ip1 }}</div>
+            <div class="required field"> {{ form.gw1.label }} {{ form.gw1 }}</div>
+        </div>
+        <div class="two fields">
+            <div class="required field"> {{ form.ip2.label }} {{ form.ip2 }}</div>
+            <div class="required field"> {{ form.gw2.label }} {{ form.gw2 }}</div>
+        </div>
+        <div class="two fields">
+            <div class="required field"> {{ form.ip3.label }} {{ form.ip3 }}</div>
+            <div class="required field"> {{ form.gw3.label }} {{ form.gw3 }}</div>
+        </div>
+
+        <br />
+        <br />
+
+        <div class="field">
+            {{ form.hostname.label }} {{ form.hostname }}
+        </div>
+        <div class="field">
+            {{ form.proxy.label }} {{ form.proxy }}
+        </div>
+        <div class="two fields">
+            <div class="field">
+                {{ form.dns.label }} {{ form.dns }}
+            </div>
+            <div class="field">
+                {{ form.key.label }} {{ form.key }}
+            </div>
+        </div>
+
+        <br />
+        <br />
+
+        <p>The following files are optional and are only required by certain appliances. Please see documentation for
+            details.</p>
+
+        <div class="four fields">
+            <div class="field">
+                {{ form.anyconnect.label }} {{ form.anyconnect }}
+            </div>
+            <div class="field">
+                {{ form.enforcer.label }} {{ form.enforcer }}
+            </div>
+            <div class="field">
+                {{ form.aws_cred.label }} {{ form.aws_cred }}
+            </div>
+            <div class="field">
+                {{ form.aws_s3_bucket_list.label }} {{ form.aws_s3_bucket_list }}
+            </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="ui bottom attached label">
+            <div class="inline field">
+                <button class="ui primary button" type="submit">Create ISO</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</form>

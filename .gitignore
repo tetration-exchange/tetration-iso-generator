@@ -1,0 +1,5 @@
+.vscode
+.venv
+.style.yapf
+.pytest_cache
+*.pyc
