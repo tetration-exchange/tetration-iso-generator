@@ -92,7 +92,12 @@ def create_iso(form):
             user_cfg.write("HTTPS_PROXY={}\n".format(form.proxy.data))
             user_cfg.write("ACTIVATION_KEY={}\n".format(form.key.data))
 
-    optional_files = {'tet-anyconnect-user.cfg': form.anyconnect, 'tnp-enforcer.conf': form.enforcer, 'aws_cred.csv': form.aws_cred, 'aws_s3_bucket_list.conf': form.aws_s3_bucket_list}
+    optional_files = {
+        'tet-anyconnect-user.cfg': form.anyconnect,
+        'tnp-enforcer.conf': form.enforcer,
+        'aws_cred.csv': form.aws_cred,
+        'aws_s3_bucket_list.conf': form.aws_s3_bucket_list
+    }
 
     for filename, filefield in optional_files.items():
         f = filefield.data
