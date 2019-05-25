@@ -1,7 +1,7 @@
 from flask import Flask, render_template, flash, request, send_file
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
-from wtforms import Form, TextField, validators 
+from wtforms import Form, TextField, validators
 from werkzeug.utils import secure_filename
 import tempfile
 import shutil
@@ -67,6 +67,7 @@ def flash_errors(form):
 def create_iso(form):
     dirpath = tempfile.mkdtemp()
     print "created temp dir", dirpath
+    iso_file = os.path.join(dirpath, 'tetration-appliance-ova-config.iso')
     iso_folder = os.path.join(dirpath, 'iso')
     os.mkdir(iso_folder)
 
@@ -104,7 +105,6 @@ def create_iso(form):
         if f:
             f.save(os.path.join(iso_folder, filename))
 
-    iso_file = os.path.join(dirpath, 'tetration-appliance-ova-config.iso')
     subprocess.call(['mkisofs', '-r', '-o', iso_file, iso_folder])
 
     return iso_file
