@@ -3,3 +3,7 @@
 .style.yapf
 .pytest_cache
 *.pyc
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
