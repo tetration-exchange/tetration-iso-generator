@@ -1,7 +1,7 @@
 from flask import Flask, render_template, flash, request, send_file
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileRequired, FileAllowed
-from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
+from flask_wtf.file import FileField, FileRequired
+from wtforms import Form, TextField, validators 
 from werkzeug.utils import secure_filename
 import tempfile
 import shutil
