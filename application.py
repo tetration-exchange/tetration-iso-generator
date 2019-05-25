@@ -8,9 +8,9 @@ import shutil
 import os
 import subprocess
 
-app = Flask(__name__)
-app.config.from_object(__name__)
-app.config['SECRET_KEY'] = 'TETRATION_IS_AWESOME'
+application = Flask(__name__)
+application.config.from_object(__name__)
+application.config['SECRET_KEY'] = 'TETRATION_IS_AWESOME'
 
 
 class UploadForm(FlaskForm):
@@ -44,7 +44,7 @@ class UploadForm(FlaskForm):
     aws_s3_bucket_list = FileField('aws_s3_bucket_list.conf:', validators=[])
 
 
-@app.route("/", methods=['GET', 'POST'])
+@application.route("/", methods=['GET', 'POST'])
 def upload():
     form = UploadForm()
 
@@ -107,4 +107,4 @@ def create_iso(form):
 
 
 if __name__ == "__main__":
-    app.run()
+    application.run()
