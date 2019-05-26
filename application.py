@@ -39,10 +39,10 @@ class UploadForm(FlaskForm):
 
     rpm = FileField('Appliance RPM:', validators=[FileRequired(), FileSize(20971520, 0, message="may not be larger than 20MB")])
 
-    anyconnect = FileField('tet-anyconnect-user.conf:', validators=[FileSize(20000, 0, message="may not be larger than 20KB")])
-    enforcer = FileField('tnp-enforcer.conf:', validators=[FileSize(20000, 0, message="may not be larger than 20KB")])
-    aws_cred = FileField('aws_cred.csv:', validators=[FileSize(20000, 0, message="may not be larger than 20KB")])
-    aws_s3_bucket_list = FileField('aws_s3_bucket_list.conf:', validators=[FileSize(20000, 0, message="may not be larger than 20KB")])
+    anyconnect = FileField('tet-anyconnect-user.conf:', validators=[FileSize(1000000, 0, message="may not be larger than 1MB")])
+    enforcer = FileField('tnp-enforcer.conf:', validators=[FileSize(1000000, 0, message="may not be larger than 1MB")])
+    aws_cred = FileField('aws_cred.csv:', validators=[FileSize(1000000, 0, message="may not be larger than 1MB")])
+    aws_s3_bucket_list = FileField('aws_s3_bucket_list.conf:', validators=[FileSize(1000000, 0, message="may not be larger than 1MB")])
 
 
 @application.route("/", methods=['GET', 'POST'])
