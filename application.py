@@ -1,6 +1,7 @@
 from flask import Flask, render_template, flash, request, send_file
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
+from validators import FileSize
 from wtforms import TextField, validators
 from werkzeug.utils import secure_filename
 import tempfile
@@ -36,12 +37,12 @@ class UploadForm(FlaskForm):
     dns = TextField('DNS (required for TaaS):')
     key = TextField('Activation Key (required for TaaS):')
 
-    rpm = FileField('Appliance RPM:', validators=[FileRequired()])
+    rpm = FileField('Appliance RPM:', validators=[FileRequired(), FileSize(20971520, 0, message="may not be larger than 20MB")])
 
-    anyconnect = FileField('tet-anyconnect-user.conf:', validators=[])
-    enforcer = FileField('tnp-enforcer.conf:', validators=[])
-    aws_cred = FileField('aws_cred.csv:', validators=[])
-    aws_s3_bucket_list = FileField('aws_s3_bucket_list.conf:', validators=[])
+    anyconnect = FileField('tet-anyconnect-user.conf:', validators=[FileSize(20000, 0, message="may not be larger than 20KB")])
+    enforcer = FileField('tnp-enforcer.conf:', validators=[FileSize(20000, 0, message="may not be larger than 20KB")])
+    aws_cred = FileField('aws_cred.csv:', validators=[FileSize(20000, 0, message="may not be larger than 20KB")])
+    aws_s3_bucket_list = FileField('aws_s3_bucket_list.conf:', validators=[FileSize(20000, 0, message="may not be larger than 20KB")])
 
 
 @application.route("/", methods=['GET', 'POST'])

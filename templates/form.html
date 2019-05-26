@@ -22,11 +22,16 @@
 
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message[1] }}</li>
-            {% endfor %}
-        </ul>
+        <div class="ui error message" style="display: block">
+            <div class="header">
+                There were some errors with your submission
+            </div>
+            <ul class="list">
+                {% for message in messages %}
+                <li>{{ message[1] }}</li>
+                {% endfor %}
+            </ul>
+        </div>
         <br />
         <br />
         {% endif %}
