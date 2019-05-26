@@ -18,7 +18,7 @@
             etc.)
             OVA. <a href="mailto:tigarner@cisco.com">Request Support.</a>
         </p>
-        <br />
+        <div class="ui hidden divider"></div>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -32,8 +32,8 @@
                 {% endfor %}
             </ul>
         </div>
-        <br />
-        <br />
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
         {% endif %}
         {% endwith %}
 
@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <br />
+        <div class="ui hidden divider"></div>
 
         <div class="two fields">
             <div class="required field"> {{ form.ip1.label }} {{ form.ip1 }}</div>
@@ -61,8 +61,8 @@
             <div class="required field"> {{ form.gw3.label }} {{ form.gw3 }}</div>
         </div>
 
-        <br />
-        <br />
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
 
         <div class="field">
             {{ form.hostname.label }} {{ form.hostname }}
@@ -79,8 +79,9 @@
             </div>
         </div>
 
-        <br />
-        <br />
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
 
         <p>The following files are optional and are only required by certain appliances. Please see documentation for
             details.</p>
@@ -100,10 +101,11 @@
             </div>
         </div>
 
-        <br />
-        <br />
-        <br />
-        <br />
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
 
         <div class="ui bottom attached label">
             <div class="inline field">
