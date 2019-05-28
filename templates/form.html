@@ -86,10 +86,18 @@
         <p>The following files are optional and are only required by certain appliances. Please see documentation for
             details.</p>
 
-        <div class="four fields">
+        <div class="three fields">
             <div class="field">
                 {{ form.anyconnect.label }} {{ form.anyconnect }}
             </div>
+            <div class="field">
+                {{ form.anyconnect_user.label }} {{ form.anyconnect_user }}
+            </div>
+            <div class="field">
+                {{ form.anyconnect_ldap.label }} {{ form.anyconnect_ldap }}
+            </div>
+        </div>
+        <div class="three fields">
             <div class="field">
                 {{ form.enforcer.label }} {{ form.enforcer }}
             </div>

@@ -39,7 +39,9 @@ class UploadForm(FlaskForm):
 
     rpm = FileField('Appliance RPM:', validators=[FileRequired(), FileSize(20971520, 0, message="may not be larger than 20MB")])
 
-    anyconnect = FileField('tet-anyconnect-user.conf:', validators=[FileSize(1000000, 0, message="may not be larger than 1MB")])
+    anyconnect = FileField('tet-anyconnect.conf:', validators=[FileSize(1000000, 0, message="may not be larger than 1MB")])
+    anyconnect_user = FileField('tet-anyconnect-user.conf:', validators=[FileSize(1000000, 0, message="may not be larger than 1MB")])
+    anyconnect_ldap = FileField('ldap.cert', validators=[FileSize(1000000, 0, message="may not be larger than 1MB")])
     enforcer = FileField('tnp-enforcer.conf:', validators=[FileSize(1000000, 0, message="may not be larger than 1MB")])
     aws_cred = FileField('aws_cred.csv:', validators=[FileSize(1000000, 0, message="may not be larger than 1MB")])
     aws_s3_bucket_list = FileField('aws_s3_bucket_list.conf:', validators=[FileSize(1000000, 0, message="may not be larger than 1MB")])
@@ -95,7 +97,9 @@ def create_iso(form):
             user_cfg.write("ACTIVATION_KEY={}\n".format(form.key.data))
 
     optional_files = {
-        'tet-anyconnect-user.cfg': form.anyconnect,
+        'tet-anyconnect.cfg': form.anyconnect,
+        'tet-anyconnect-user.cfg': form.anyconnect_user,
+        'ldap.cert': form.anyconnect_ldap,
         'tnp-enforcer.conf': form.enforcer,
         'aws_cred.csv': form.aws_cred,
         'aws_s3_bucket_list.conf': form.aws_s3_bucket_list
