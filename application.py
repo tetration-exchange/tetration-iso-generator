@@ -93,8 +93,10 @@ def create_iso(form):
 
     if form.proxy.data or form.key.data:
         with open(os.path.join(iso_folder, 'user.cfg'), 'w') as user_cfg:
-            user_cfg.write("HTTPS_PROXY={}\n".format(form.proxy.data))
-            user_cfg.write("ACTIVATION_KEY={}\n".format(form.key.data))
+            if form.proxy.data:
+                user_cfg.write("HTTPS_PROXY={}\n".format(form.proxy.data))
+            if form.key.data:
+                user_cfg.write("ACTIVATION_KEY={}\n".format(form.key.data))
 
     optional_files = {
         'tet-anyconnect.cfg': form.anyconnect,
