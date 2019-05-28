@@ -99,8 +99,8 @@ def create_iso(form):
                 user_cfg.write("ACTIVATION_KEY={}\n".format(form.key.data))
 
     optional_files = {
-        'tet-anyconnect.cfg': form.anyconnect,
-        'tet-anyconnect-user.cfg': form.anyconnect_user,
+        'tet-anyconnect.conf': form.anyconnect,
+        'tet-anyconnect-user.conf': form.anyconnect_user,
         'ldap.cert': form.anyconnect_ldap,
         'tnp-enforcer.conf': form.enforcer,
         'aws_cred.csv': form.aws_cred,
