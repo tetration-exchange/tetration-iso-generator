@@ -19,18 +19,12 @@ class UploadForm(FlaskForm):
         'Interface 1 IP Address (CIDR format)',
         validators=[validators.required()],
     )
-    ip2 = TextField(
-        'Interface 2 IP Address (CIDR format)',
-        validators=[validators.required()],
-    )
-    ip3 = TextField(
-        'Interface 3 IP Address (CIDR format)',
-        validators=[validators.required()],
-    )
+    ip2 = TextField('Interface 2 IP Address (CIDR format)')
+    ip3 = TextField('Interface 3 IP Address (CIDR format)')
 
     gw1 = TextField('Interface 1 Gateway IP', validators=[validators.required()])
-    gw2 = TextField('Interface 2 Gateway IP', validators=[validators.required()])
-    gw3 = TextField('Interface 3 Gateway IP', validators=[validators.required()])
+    gw2 = TextField('Interface 2 Gateway IP', validators=[])
+    gw3 = TextField('Interface 3 Gateway IP', validators=[])
 
     hostname = TextField('Hostname (optional):')
     proxy = TextField('HTTPS Proxy (optional):')
