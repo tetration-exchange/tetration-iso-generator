@@ -47,6 +47,11 @@ class UploadForm(FlaskForm):
     aws_s3_bucket_list = FileField('aws_s3_bucket_list.conf:', validators=[FileSize(1000000, 0, message="may not be larger than 1MB")])
 
 
+@application.route("/eula", methods=['GET'])
+def eula():
+    return render_template('eula.html')
+
+
 @application.route("/", methods=['GET', 'POST'])
 def upload():
     form = UploadForm()
