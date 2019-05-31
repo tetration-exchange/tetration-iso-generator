@@ -88,7 +88,7 @@ def create_iso(form):
 
     if form.dns.data:
         with open(os.path.join(iso_folder, 'resolv.conf'), 'w') as resolv:
-            resolv.write(form.dns.data)
+            resolv.write(form.dns.data.decode("string_escape"))
 
     if form.proxy.data or form.key.data:
         with open(os.path.join(iso_folder, 'user.cfg'), 'w') as user_cfg:
