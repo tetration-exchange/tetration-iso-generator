@@ -31,7 +31,7 @@ class UploadForm(FlaskForm):
     dns = TextField('DNS (required for TaaS):')
     key = TextField('Activation Key (required for TaaS):')
 
-    rpm = FileField('Appliance RPM:', validators=[FileRequired(), FileSize(20971520, 0, message="may not be larger than 20MB")])
+    rpm = FileField('Appliance RPM (or .tar.gz for TAN):', validators=[FileRequired(), FileSize(20971520, 0, message="may not be larger than 20MB")])
 
     anyconnect = FileField('tet-anyconnect.conf:', validators=[FileSize(1000000, 0, message="may not be larger than 1MB")])
     anyconnect_user = FileField('tet-anyconnect-user.conf:', validators=[FileSize(1000000, 0, message="may not be larger than 1MB")])
