@@ -28,7 +28,9 @@ class UploadForm(FlaskForm):
 
     hostname = TextField('Hostname (optional):')
     proxy = TextField('HTTPS Proxy (optional):')
-    dns = TextField('DNS (required for TaaS):')
+    dns_1 = TextField('DNS Nameserver 1 (required for TaaS):')
+    dns_2 = TextField('DNS Nameserver 2 (required for TaaS):')
+    dns_domain = TextField('DNS Search Domain (required for TaaS):')
     key = TextField('Activation Key (required for TaaS):')
 
     rpm = FileField('Appliance RPM (or .tar.gz for TAN):', validators=[FileRequired(), FileSize(20971520, 0, message="may not be larger than 20MB")])
@@ -51,7 +53,7 @@ def upload():
     form = UploadForm()
 
     if form.validate_on_submit():
-        print "Creating ISO"
+        print("Creating ISO")
         iso = create_iso(form)
         return send_file(iso, as_attachment=True)
 
@@ -61,14 +63,14 @@ def upload():
 
 
 def flash_errors(form):
-    for field, errors in form.errors.items():
+    for field, errors in list(form.errors.items()):
         for error in errors:
-            flash(u"Error in the %s field - %s" % (getattr(form, field).label.text, error))
+            flash("Error in the %s field - %s" % (getattr(form, field).label.text, error))
 
 
 def create_iso(form):
     dirpath = tempfile.mkdtemp()
-    print "created temp dir", dirpath
+    print("created temp dir", dirpath)
     iso_file = os.path.join(dirpath, 'tetration-appliance-ova-config.iso')
     iso_folder = os.path.join(dirpath, 'iso')
     os.mkdir(iso_folder)
@@ -86,9 +88,13 @@ def create_iso(form):
         with open(os.path.join(iso_folder, 'host_name'), 'w') as host_name:
             host_name.write(form.hostname.data)
 
-    if form.dns.data:
+    if form.dns_1.data:
         with open(os.path.join(iso_folder, 'resolv.conf'), 'w') as resolv:
-            resolv.write(form.dns.data.decode("string_escape"))
+            resolv.write("nameserver {}\n".format(form.dns_1.data))
+            if form.dns_1.data:
+                resolv.write("nameserver {}\n".format(form.dns_2.data))
+            if form.dns_domain.data:
+                resolv.write("search {}".format(form.dns_domain.data))
 
     if form.proxy.data or form.key.data:
         with open(os.path.join(iso_folder, 'user.cfg'), 'w') as user_cfg:
@@ -106,7 +112,7 @@ def create_iso(form):
         'aws_s3_bucket_list.conf': form.aws_s3_bucket_list
     }
 
-    for filename, filefield in optional_files.items():
+    for filename, filefield in list(optional_files.items()):
         f = filefield.data
         if f:
             f.save(os.path.join(iso_folder, filename))

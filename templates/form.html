@@ -16,7 +16,8 @@
             Use this tool to generate an ISO file to be mounted inside the relevant Tetration Appliance (ERSPAN,
             NetFlow,
             etc.)
-            OVA. <a href="mailto:tigarner@cisco.com">Request Support.</a><a href="/eula" style="padding-left: 3px">EULA</a>
+            OVA. <a href="mailto:tigarner@cisco.com">Request Support.</a><a href="/eula"
+                style="padding-left: 3px">EULA</a>
         </p>
         <div class="ui hidden divider"></div>
 
@@ -72,10 +73,18 @@
         </div>
         <div class="two fields">
             <div class="field">
-                {{ form.dns.label }} {{ form.dns }}
+                {{ form.key.label }} {{ form.key }}
             </div>
             <div class="field">
-                {{ form.key.label }} {{ form.key }}
+                {{ form.dns_1.label }} {{ form.dns_1 }}
+            </div>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                {{ form.dns_2.label }} {{ form.dns_2 }}
+            </div>
+            <div class="field">
+                {{ form.dns_domain.label }} {{ form.dns_domain }}
             </div>
         </div>
 
