@@ -82,7 +82,7 @@ def create_iso(form):
     with open(os.path.join(iso_folder, 'ip_config'), 'w') as ip_config:
         ip_config.write("{} {}\n".format(form.ip1.data, form.gw1.data))
         ip_config.write("{} {}\n".format(form.ip2.data, form.gw2.data))
-        ip_config.write("{} {}".format(form.ip3.data, form.gw3.data))
+        ip_config.write("{} {}\n".format(form.ip3.data, form.gw3.data))
 
     if form.hostname.data:
         with open(os.path.join(iso_folder, 'host_name'), 'w') as host_name:
